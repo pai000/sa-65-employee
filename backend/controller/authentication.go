@@ -45,7 +45,7 @@ func Login(c *gin.Context) {
 	}
 
 	// ตรวจสอบรหัสผ่าน
-	err := bcrypt.CompareHashAndPassword([]byte(em.Personal_ID), []byte(payload.Password))
+	err := bcrypt.CompareHashAndPassword([]byte(em.Password), []byte(payload.Password))
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "password is incerrect"})
 		return

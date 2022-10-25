@@ -6,6 +6,7 @@ export interface EmployeeInterface {
 	Name?:  			string,
 	Email?:     		string,
 	Personal_ID?:  		string, 
+	Password?:			string,
 	ProvinceID?:    	number,
 	Province?:    		ProvincesInterface,  
 	GenderID?:        	number,    

@@ -81,7 +81,7 @@ function SignIn() {
           anchorOrigin={{ vertical: "top", horizontal: "center" }}
         >
           <Alert onClose={handleClose} severity="error">
-            อีเมลหรือบัตรประชาชนไม่ถูกต้อง
+            อีเมลหรือรหัสผ่านไม่ถูกต้อง
           </Alert>
         </Snackbar>
         

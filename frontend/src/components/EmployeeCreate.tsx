@@ -114,6 +114,7 @@ function EmployeeCreate() {
       Name: employee.Name,
       Email: employee.Email,
       Personal_ID: employee.Personal_ID,
+      Password: employee.Password,
       GenderID: convertType(employee.GenderID),
       Job_PositionID: convertType(employee.Job_PositionID),
       ProvinceID: convertType(employee.ProvinceID),
@@ -235,6 +236,21 @@ function EmployeeCreate() {
                 size="medium"
                 placeholder="กรุณากรอกอีเมลล์"
                 value={employee.Email || ""}
+                onChange={handleInputChange}
+              />
+            </FormControl>
+          </Grid>
+
+          <Grid item xs={6}>
+            <p>รหัสผ่าน</p>
+            <FormControl fullWidth variant="outlined">
+              <TextField
+                id="Password"
+                variant="outlined"
+                type="string"
+                size="medium"
+                placeholder="กรุณากรอกรหัสผ่าน"
+                value={employee.Password || ""}
                 onChange={handleInputChange}
               />
             </FormControl>

@@ -42,19 +42,20 @@ func CreateEmployee(c *gin.Context) {
 		return
 	}
 	// เข้ารหัสลับจากบัตรประชาชนที่ Admin กรอกข้อมูล
-	hashPassword, err := bcrypt.GenerateFromPassword([]byte(employee.Personal_ID), 14)
+	hashPassword, err := bcrypt.GenerateFromPassword([]byte(employee.Password), 14)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "error hashing password"})
 		return
 	}
 
-	employee.Personal_ID = string(hashPassword)
+	employee.Password = string(hashPassword)
 
 	// 12: สร้าง Employee
 	wv := entity.Employee{
 		Name:         employee.Name,
 		Personal_ID:  employee.Personal_ID,
 		Email:        employee.Email,
+		Password:     employee.Password,
 		Gender:       gender,       // โยงความสัมพันธ์กับ Entity gender
 		Job_Position: job_position, // โยงความสัมพันธ์กับ Entity job_position
 		Province:     province,     // โยงความสัมพันธ์กับ Entity province

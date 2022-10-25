@@ -30,6 +30,7 @@ type Employee struct {
 	Personal_ID string `gorm:"uniqueIndex"`
 	Email       string `gorm:"uniqueIndex"`
 	Name        string
+	Password    string
 
 	//GenderID ทำหน้าที่เป็น FK
 	GenderID *uint
