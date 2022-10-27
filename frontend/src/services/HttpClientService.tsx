@@ -11,15 +11,44 @@ async function Login(data: SigninInterface) {
     body: JSON.stringify(data),
   };
 
-  let res = await fetch(`${apiUrl}/login`, requestOptions)
+  let res = await fetch(`${apiUrl}/login_employee`, requestOptions)
     .then((response) => response.json())
     .then((res) => {
       if (res.data) {
         console.log(res.data);
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("uid", res.data.id);
-        // // เก็บข้อมูล position ที่ login เข้ามา
+        // เก็บข้อมูล position ที่ login เข้ามา
         localStorage.setItem("position", res.data.position);
+        // เก็บข้อมูล position ที่ login เข้ามา
+        localStorage.setItem("role", res.data.role);
+        return res.data;
+      } else {
+        return false;
+      }
+    });
+
+  return res;
+}
+
+async function LoginStudent(data: SigninInterface) {
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  };
+
+  let res = await fetch(`${apiUrl}/login_student`, requestOptions)
+    .then((response) => response.json())
+    .then((res) => {
+      if (res.data) {
+        console.log(res.data);
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("uid", res.data.id);
+        // เก็บข้อมูล position ที่ login เข้ามา
+        localStorage.setItem("position", res.data.position);
+        // เก็บข้อมูล position ที่ login เข้ามา
+        localStorage.setItem("role", res.data.role);
         return res.data;
       } else {
         return false;
@@ -143,6 +172,7 @@ async function CreateEmployees(data: EmployeeInterface) {
 
 export {
   Login,
+  LoginStudent,
   GetGenders,
   GetJob_Positions,
   GetProvinces,

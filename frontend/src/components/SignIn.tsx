@@ -15,6 +15,8 @@ import MuiAlert, { AlertProps } from "@mui/material/Alert";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { SigninInterface } from "../interfaces/ISignin";
 import { Login } from "../services/HttpClientService";
+import { LoginStudent } from "../services/HttpClientService";
+
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
@@ -51,7 +53,8 @@ function SignIn() {
 
   const submit = async () => {
     let res = await Login(signin);
-    if (res) {
+    let resstd = await LoginStudent(signin);
+    if (res || resstd) {
       setSuccess(true);
       setTimeout(() => {
         window.location.reload();
@@ -60,6 +63,7 @@ function SignIn() {
       setError(true);
     }
   };
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -163,6 +167,7 @@ function SignIn() {
       </Grid>
     </ThemeProvider>
   );
+
 }
 
 export default SignIn;

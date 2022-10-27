@@ -51,9 +51,13 @@ func main() {
 	}
 
 	//Signup User Route
-	r.POST("/signup", controller.CreateLoginEmployee)
+	r.POST("/signup_employee", controller.CreateEmployee)
+
+	r.POST("/signup_student", controller.CreateLoginStudent)
 	// login User Route
-	r.POST("/login", controller.Login)
+	r.POST("/login_employee", controller.LoginEmployee)
+
+	r.POST("/login_student", controller.LoginStudent)
 
 	// Run the server go run main.go
 	r.Run("0.0.0.0:8080")

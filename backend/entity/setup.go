@@ -23,15 +23,25 @@ func SetupDatabase() {
 
 	// Migrate the schema
 	database.AutoMigrate(
+		//Employee
 		&Gender{},
 		&Job_Position{},
 		&Province{},
 		&Employee{},
+
+		//Student
+		&Role{},
+		&Program{},
+		&Student{},
 	)
 
 	db = database
 
-	//add example data
+	//add example
+
+	// ======================================================================================================================
+	// ======================================  Employee  =====================================================================
+	// ======================================================================================================================
 
 	//Gender
 	gender1 := Gender{
@@ -92,7 +102,19 @@ func SetupDatabase() {
 	password3, err := bcrypt.GenerateFromPassword([]byte("1111111111111"), 14)
 	password4, err := bcrypt.GenerateFromPassword([]byte("adas8485"), 14)
 
-	//insert employee
+	//insert employee'
+	em1 := Employee{
+		Personal_ID: "1456287463254",
+		Email:       "ana@gmail.com",
+		Name:        "Ana poul",
+		Password:    string(password1),
+
+		Gender:       gender2,
+		Job_Position: job_position1,
+		Province:     korat,
+	}
+	db.Model(&Employee{}).Create(&em1)
+
 	db.Model(&Employee{}).Create(&Employee{
 		Personal_ID: "1456287463254",
 		Email:       "ana@gmail.com",
@@ -129,12 +151,54 @@ func SetupDatabase() {
 	db.Model(&Employee{}).Create(&Employee{
 		Personal_ID: "5847532016420",
 		Email:       "akira@gmail.com",
-		Name:        "akira komisu",
+		Name:        "Akira komisu",
 		Password:    string(password4),
 
 		Gender:       gender1,
 		Job_Position: job_position1,
 		Province:     roiet,
+	})
+
+	// ======================================================================================================================
+	// ======================================  Student  =====================================================================
+	// ======================================================================================================================
+
+	// --- Program Data
+	p1 := Program{
+		Program_name: "Computer engineering",
+	}
+	db.Model(&Program{}).Create(&p1)
+	p2 := Program{
+		Program_name: "Telecommunication engineering",
+	}
+	db.Model(&Program{}).Create(&p2)
+	p3 := Program{
+		Program_name: "Program in Biology",
+	}
+	db.Model(&Program{}).Create(&p3)
+	p4 := Program{
+		Program_name: "Institute of Nursing",
+	}
+	db.Model(&Program{}).Create(&p4)
+
+	// --- Role Data
+
+	role1 := Role{
+		Role_name: "Student",
+	}
+	db.Model(&Role{}).Create(&role1)
+
+	db.Model(&Student{}).Create(&Student{
+		STUDENT_NUMBER: "B62457815",
+		STUDENT_NAME:   "Supachai srikawe",
+		PERSONAL_ID:    "1786542390457",
+		Password:       string(password4),
+
+		Gender:   gender1,
+		Program:  p3,
+		Province: roiet,
+		Role:     role1,
+		Employee: em1,
 	})
 
 }

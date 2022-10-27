@@ -86,6 +86,8 @@ const mdTheme = createTheme();
 const menu = [
   { name: "หน้าแรก", icon: <HomeIcon />, path: "/" },
   { name: "พนักงาน", icon: <PeopleIcon />, path: "/employees" , position: "Admin"},
+  { name: "จองห้องพัก", icon: <PeopleIcon />, path: "/booking" , position: "Student"},
+  { name: "แจ้งซ่อม", icon: <PeopleIcon />, path: "/repair" , position: "Student"},
 ];
 
 function App() {
@@ -93,6 +95,7 @@ function App() {
   const [open, setOpen] = React.useState(true);
   //รับ Position
   const [position, setPosition] = useState<String | null>("");
+  const [role, setRole] = useState<String | null>("");
 
   const toggleDrawer = () => {
     setOpen(!open);
@@ -202,11 +205,8 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/employees" element={<Employees />} />
                 <Route path="/employee/create" element={<EmployeeCreate />} />
-                {/* <Route path="/watch_videos" />element={<WatchVideos />} /> */}
-                <Route
-                  path="/watch_video/create"
-                  //element={<WatchVideoCreate />}
-                />
+                <Route path="/booking/" element={<Home />} />
+                <Route path="/repair/" element={<Home />} />
               </Routes>
             </Container>
           </Box>

@@ -9,6 +9,7 @@ type Gender struct {
 	Name string
 
 	Employees []Employee `gorm:"foreignKey:GenderID"`
+	Student   []Student  `gorm:"foreignKey:GenderID"`
 }
 
 type Job_Position struct {
@@ -16,6 +17,7 @@ type Job_Position struct {
 	Name string
 
 	Employees []Employee `gorm:"foreignKey:Job_PositionID"`
+	Student   []Student  `gorm:"foreignKey:GenderID"`
 }
 
 type Province struct {
@@ -43,4 +45,7 @@ type Employee struct {
 	//ProvinceID ทำหน้าที่เป็น FK
 	ProvinceID *uint
 	Province   Province `gorm:"references:id"`
+
+	RoleID *uint
+	Role   Role `gorm:"references:id"`
 }
