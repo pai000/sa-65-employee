@@ -115,7 +115,7 @@ func SetupDatabase() {
 	}
 	db.Model(&Employee{}).Create(&em1)
 
-	db.Model(&Employee{}).Create(&Employee{
+	em2 := Employee{
 		Personal_ID: "1456287463254",
 		Email:       "ana@gmail.com",
 		Name:        "Ana poul",
@@ -124,9 +124,10 @@ func SetupDatabase() {
 		Gender:       gender2,
 		Job_Position: job_position1,
 		Province:     korat,
-	})
+	}
+	db.Model(&Employee{}).Create(&em2)
 
-	db.Model(&Employee{}).Create(&Employee{
+	em3 := Employee{
 		Personal_ID: "5874621453054",
 		Email:       "kerkkiat@gmail.com",
 		Name:        "Kerkkiat Prabmontree",
@@ -135,9 +136,10 @@ func SetupDatabase() {
 		Gender:       gender1,
 		Job_Position: job_position3,
 		Province:     bangkok,
-	})
+	}
+	db.Model(&Employee{}).Create(&em3)
 
-	db.Model(&Employee{}).Create(&Employee{
+	em4 := Employee{
 		Personal_ID: "4587652145385",
 		Email:       "matinez@gmail.com",
 		Name:        "Devid Matinez",
@@ -146,9 +148,10 @@ func SetupDatabase() {
 		Gender:       gender1,
 		Job_Position: job_position4,
 		Province:     chon,
-	})
+	}
+	db.Model(&Employee{}).Create(&em4)
 
-	db.Model(&Employee{}).Create(&Employee{
+	em5 := Employee{
 		Personal_ID: "5847532016420",
 		Email:       "akira@gmail.com",
 		Name:        "Akira komisu",
@@ -157,7 +160,8 @@ func SetupDatabase() {
 		Gender:       gender1,
 		Job_Position: job_position1,
 		Province:     roiet,
-	})
+	}
+	db.Model(&Employee{}).Create(&em5)
 
 	// ======================================================================================================================
 	// ======================================  Student  =====================================================================
