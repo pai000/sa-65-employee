@@ -38,6 +38,14 @@ func SetupDatabase() {
 	db = database
 
 	//add example
+password1, err := bcrypt.GenerateFromPassword([]byte("abc12456"), 14)
+	password2, err := bcrypt.GenerateFromPassword([]byte("123456"), 14)
+	password3, err := bcrypt.GenerateFromPassword([]byte("1111111111111"), 14)
+	password4, err := bcrypt.GenerateFromPassword([]byte("adas8485"), 14)
+	password5, err := bcrypt.GenerateFromPassword([]byte("123"), 14)
+	password6, err := bcrypt.GenerateFromPassword([]byte("000"), 14)
+
+
 
 	// ======================================================================================================================
 	// ======================================  Employee  =====================================================================
@@ -45,13 +53,13 @@ func SetupDatabase() {
 
 	//Gender
 	gender1 := Gender{
-		Name: "Male",
+		GENDER_NAME: "Male",
 	}
 
 	db.Model(&Gender{}).Create(&gender1)
 
 	gender2 := Gender{
-		Name: "FeMale",
+		GENDER_NAME: "FeMale",
 	}
 
 	db.Model(&Gender{}).Create(&gender2)
@@ -97,11 +105,7 @@ func SetupDatabase() {
 	}
 	db.Model(&Province{}).Create(&bangkok)
 
-	password1, err := bcrypt.GenerateFromPassword([]byte("abc12456"), 14)
-	password2, err := bcrypt.GenerateFromPassword([]byte("123456"), 14)
-	password3, err := bcrypt.GenerateFromPassword([]byte("1111111111111"), 14)
-	password4, err := bcrypt.GenerateFromPassword([]byte("adas8485"), 14)
-
+	
 	//insert employee'
 	em1 := Employee{
 		Personal_ID: "1456287463254",
@@ -115,19 +119,8 @@ func SetupDatabase() {
 	}
 	db.Model(&Employee{}).Create(&em1)
 
+
 	em2 := Employee{
-		Personal_ID: "1456287463254",
-		Email:       "ana@gmail.com",
-		Name:        "Ana poul",
-		Password:    string(password1),
-
-		Gender:       gender2,
-		Job_Position: job_position1,
-		Province:     korat,
-	}
-	db.Model(&Employee{}).Create(&em2)
-
-	em3 := Employee{
 		Personal_ID: "5874621453054",
 		Email:       "kerkkiat@gmail.com",
 		Name:        "Kerkkiat Prabmontree",
@@ -137,9 +130,9 @@ func SetupDatabase() {
 		Job_Position: job_position3,
 		Province:     bangkok,
 	}
-	db.Model(&Employee{}).Create(&em3)
+	db.Model(&Employee{}).Create(&em2)
 
-	em4 := Employee{
+	em3 := Employee{
 		Personal_ID: "4587652145385",
 		Email:       "matinez@gmail.com",
 		Name:        "Devid Matinez",
@@ -149,19 +142,21 @@ func SetupDatabase() {
 		Job_Position: job_position4,
 		Province:     chon,
 	}
-	db.Model(&Employee{}).Create(&em4)
+	db.Model(&Employee{}).Create(&em3)
 
-	em5 := Employee{
+	em4 := Employee{
 		Personal_ID: "5847532016420",
 		Email:       "akira@gmail.com",
 		Name:        "Akira komisu",
-		Password:    string(password4),
+		Password:    string(password5),
 
 		Gender:       gender1,
 		Job_Position: job_position1,
 		Province:     roiet,
 	}
-	db.Model(&Employee{}).Create(&em5)
+	db.Model(&Employee{}).Create(&em4)
+
+
 
 	// ======================================================================================================================
 	// ======================================  Student  =====================================================================
@@ -192,7 +187,7 @@ func SetupDatabase() {
 	}
 	db.Model(&Role{}).Create(&role1)
 
-	db.Model(&Student{}).Create(&Student{
+	std1 := Student{
 		STUDENT_NUMBER: "B62457815",
 		STUDENT_NAME:   "Supachai srikawe",
 		PERSONAL_ID:    "1786542390457",
@@ -203,6 +198,21 @@ func SetupDatabase() {
 		Province: roiet,
 		Role:     role1,
 		Employee: em1,
-	})
+	}
+	db.Model(&Student{}).Create(&std1)
+
+	std2 := Student{
+		STUDENT_NUMBER: "B61547843",
+		STUDENT_NAME:   "Yanisa wisagesak",
+		PERSONAL_ID:    "5698231452357",
+		Password:       string(password6),
+
+		Gender:   gender2,
+		Program:  p3,
+		Province: roiet,
+		Role:     role1,
+		Employee: em1,
+	}
+	db.Model(&Student{}).Create(&std2)
 
 }
